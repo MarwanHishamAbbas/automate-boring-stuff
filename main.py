@@ -1,14 +1,20 @@
-responses = {}
+class Bike:
+    def __init__(self, color, material):
+        self.color = color
+        self.material = material
 
-polling_active = True
+    def brake(self):
+        print("Braking!...")
+   
 
-while polling_active:
-    name = input("What is your name? ")
-    response = input('What career do you want to have? ')
-    responses[name] = response
-    repeat = input("Do you want to be asked again? (yes/no) ")
-    if(repeat == 'no'):
-        polling_active = False
+    
 
 
-print(responses)
+
+red_bike = Bike('red', 'metal')
+blue_bike = Bike('blue', 'Steel')
+red_bike.brake()
+
+print(id(red_bike))
+print(id(blue_bike))
+        
