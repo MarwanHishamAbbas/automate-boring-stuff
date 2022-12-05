@@ -16,3 +16,28 @@ def initFromDateTime(cls, name, birthYear):
     # This is like alternative __init__ to the original one
     return cls(name, date.today().year - birthYear)
     # __init__(name, age=date.today().year - birthYear)
+
+
+class Pizza:
+    def __init__(self, ingredients): 
+        self.ingredients = ingredients
+    
+    @classmethod
+    def vegi(cls):
+        return cls(['mushrooms', 'onions', 'olives'])   
+
+    @classmethod
+    def meat(cls):
+        return cls(['meat', 'sauce', 'cheese'])   
+
+
+
+vegiPizza = Pizza.vegi()
+print(vegiPizza.ingredients)
+# ['mushrooms', 'onions', 'olives']
+
+meatPizza = Pizza.meat()
+print(meatPizza.ingredients)
+# ['meat', 'sauce', 'cheese']
+
+# re-init the class with different attributes inputs
