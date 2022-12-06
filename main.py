@@ -1,14 +1,26 @@
-responses = {}
+import pickle
+from dataclasses import dataclass
 
-polling_active = True
+@dataclass
+class Person:
+    first_name:str
+    last_name: str
+    id: int
 
-while polling_active:
-    name = input("What is your name? ")
-    response = input('What career do you want to have? ')
-    responses[name] = response
-    repeat = input("Do you want to be asked again? (yes/no) ")
-    if(repeat == 'no'):
-        polling_active = False
+    def greet(self):
+        print(f"Hi, I'm {self.first_name} {self.last_name} ID: {self.id}")
 
 
-print(responses)
+people = [Person('Marwan', 'Hisham', 124), Person('Mohamed', 'Hisham', 333)]
+
+# save data in binary format to a file
+with open('data.pickle', 'wb') as stream:
+    pickle.dump(people, stream)
+
+# load the data from the file 
+with open('data.pickle', 'rb') as stream:
+    peeps = pickle.load(stream)
+
+
+for person in peeps:
+    person.greet()
