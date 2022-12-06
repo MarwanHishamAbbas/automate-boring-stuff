@@ -1,32 +1,28 @@
-from datetime import date
+# Polymorphism.py
+class Person: 
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
 
-class Student: 
-    no_of_students = 0
-    def __init__(self, name, age, courses):
-        self.__name = name
-        self.__age = age
-        self.__courses = courses
-        Student.no_of_students += 1
-    
     def display(self):
-        print(f"My name is {self.__name}, I'm {self.__age} years old and I'm studing {self.__courses[1]} ")
+        return f"Name is {self.name} and age is {self.age} "
 
-@classmethod
-def initFromDateTime(cls, name, birthYear):
-    # This is like alternative __init__ to the original one
-    return cls(name, date.today().year - birthYear)
-    # __init__(name, age=date.today().year - birthYear)
+class Man(Person):
+    gender = 'Male'
+    no_of_men = 0
+    def __init__(self, name,age,voice):
+        super().__init__(name, age)
+        self.voice = voice
+        Man.no_of_men += 1
 
 
-class Pizza:
-    def __init__(self, ingredients, radius): 
-        self.ingredients = ingredients
-        self.radius = radius
-    
-    def area(self):
-        return Pizza.circle_area(self.radius)
+    def display(self):
+        # overwrite the display method
+        string = super().display()
+        return string + f"and have {self.voice} and gender is {self.gender}"
 
-    
-    @staticmethod
-    def circle_area(r): 
-        return r**2 * 3.14
+person1 = Man('Marwan Hisham', 23, 'Deep voice')
+person2 = Man('Mohamed Hisham', 25, 'Deep voice')
+
+print(person1.display())
+print(Man.no_of_men)
