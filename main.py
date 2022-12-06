@@ -1,26 +1,15 @@
-import pickle
-from dataclasses import dataclass
+# A shelf, is a persistent dictionary-like object. The beauty of it is that the values you save into a shelf can be any object you can pickle, so you're not restricted like you would be if you were using a database. Albeit interesting and useful, the shelve module is used quite rarely in practice. Just for completeness, let's see a quick example of how it works:
 
-@dataclass
-class Person:
-    first_name:str
-    last_name: str
-    id: int
+import shelve
 
-    def greet(self):
-        print(f"Hi, I'm {self.first_name} {self.last_name} ID: {self.id}")
+class Person: 
+    def __init__(self, name, id):
+        self.name = name
+        self.id = id
+        
 
 
-people = [Person('Marwan', 'Hisham', 124), Person('Mohamed', 'Hisham', 333)]
-
-# save data in binary format to a file
-with open('data.pickle', 'wb') as stream:
-    pickle.dump(people, stream)
-
-# load the data from the file 
-with open('data.pickle', 'rb') as stream:
-    peeps = pickle.load(stream)
-
-
-for person in peeps:
-    person.greet()
+with shelve.open('shelf1.shelve') as db:
+    db['obil1'] = Person('Marwan Hisham', 123)
+    db['obil2'] = Person('Mohamed Hisham', 222)
+    print(list(db.keys()))
