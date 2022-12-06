@@ -13,3 +13,6 @@ with shelve.open('shelf1.shelve') as db:
     db['obil1'] = Person('Marwan Hisham', 123)
     db['obil2'] = Person('Mohamed Hisham', 222)
     print(list(db.keys()))
+
+
+# pickle is for serializing some object (or objects) as a single bytestream in a file. shelve builds on top of pickle and implements a serialization dictionary where objects are pickled, but associated with a key (some string), so you can load your shelved data file and access your pickled objects via keys. 
