@@ -19,25 +19,14 @@ def initFromDateTime(cls, name, birthYear):
 
 
 class Pizza:
-    def __init__(self, ingredients): 
+    def __init__(self, ingredients, radius): 
         self.ingredients = ingredients
+        self.radius = radius
     
-    @classmethod
-    def vegi(cls):
-        return cls(['mushrooms', 'onions', 'olives'])   
+    def area(self):
+        return Pizza.circle_area(self.radius)
 
-    @classmethod
-    def meat(cls):
-        return cls(['meat', 'sauce', 'cheese'])   
-
-
-
-vegiPizza = Pizza.vegi()
-print(vegiPizza.ingredients)
-# ['mushrooms', 'onions', 'olives']
-
-meatPizza = Pizza.meat()
-print(meatPizza.ingredients)
-# ['meat', 'sauce', 'cheese']
-
-# re-init the class with different attributes inputs
+    
+    @staticmethod
+    def circle_area(r): 
+        return r**2 * 3.14
